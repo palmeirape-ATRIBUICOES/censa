@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Centro Educacional Nossa Senhora Aparecida (CENSA) em Anchieta, Rio de Janeiro. Da Educação Infantil ao Ensino Médio. Uma proposta pedagógica humanizada e acolhedora baseada na obra de São Luís Guanella.">
+  <meta name="keywords" content="CENSA, Centro Educacional Nossa Senhora Aparecida, Escola Anchieta, Colegio Anchieta RJ, Educação Infantil Anchieta, Ensino Médio Anchieta, CEOA, Oásis da Alegria">
+  <meta name="author" content="CENSA">
+  
+  <title>CENSA - Centro Educacional Nossa Senhora Aparecida</title>
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://www.censaparecida.com/wp-content/uploads/2019/06/favicon.ico" type="image/x-icon">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- --- 1. TOP UTILITY BAR --- -->
+  <div class="top-bar">
+    <div class="container top-bar-flex">
+      <div class="top-bar-info">
+        <span>FILHAS DE SANTA MARIA DA PROVIDÊNCIA - OBRAS GUANELLIANAS</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="#portal"><i class="fa-solid fa-lock"></i> Área Restrita</a>
+        <a href="#contact"><i class="fa-solid fa-phone"></i> Fale Conosco</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- 2. MAIN HEADER (Logo, Search, Social) --- -->
+  <header class="main-header">
+    <div class="container main-header-flex">
+      <a href="#home" class="logo-area">
+        <div class="logo-icon-box">C</div>
+        <div class="logo-text-box">
+          <h2>COLÉGIO CENSA</h2>
+          <p>Centro Educacional Nossa Senhora Aparecida</p>
+        </div>
+      </a>
+      
+      <div class="header-search-box">
+        <form id="search-form" onsubmit="event.preventDefault(); alert('Pesquisa simulada realizada!');">
+          <input type="text" placeholder="Encontre no Colégio CENSA..." class="search-input" required>
+          <button type="submit" class="search-btn">BUSCAR</button>
+        </form>
+      </div>
+
+      <div class="header-social-box">
+        <span>Redes:</span>
+        <a href="https://www.facebook.com/censaparecida/" target="_blank" class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- --- 3. SOLID NAVIGATION BAR --- -->
+  <nav class="main-nav" id="main-nav-bar">
+    <div class="container main-nav-container">
+      <ul class="nav-menu-list" id="nav-menu-list">
+        <li><a href="#home" class="nav-menu-link active">INICIAL</a></li>
+        <li><a href="#about" class="nav-menu-link">O COLÉGIO</a></li>
+        <li><a href="#segments" class="nav-menu-link">SÉRIES E CURSOS</a></li>
+        <li><a href="#social" class="nav-menu-link">PROJETO SOCIAL (CEOA)</a></li>
+        <li><a href="#gallery" class="nav-menu-link">GALERIA</a></li>
+        <li><a href="#portal" class="nav-menu-link">PORTAL DO ALUNO</a></li>
+        <li><a href="#contact" class="nav-menu-link">CONTATO</a></li>
+      </ul>
+      <div class="nav-hamburger" id="nav-hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- --- 4. HERO SECTION (Practical Grid Layout) --- -->
+  <section class="hero-grid-section" id="home">
+    <div class="container hero-grid-container">
+      
+      <!-- Left: Dynamic Banner Card -->
+      <div class="hero-main-slider">
+        <div class="slide-content">
+          <div class="slide-logo">
+            <div class="slide-logo-circle">C</div>
+            <span>COLÉGIO CENSA</span>
+          </div>
+          <h2 id="home-promo-title">MATRÍCULAS E INSCRIÇÕES ABERTAS!</h2>
+          <div class="slide-contacts-grid">
+            <div class="slide-contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <strong>RECEPÇÃO</strong>
+                <p id="home-phone-val">(21) 2455-6582</p>
+              </div>
+            </div>
+            <div class="slide-contact-item">
+              <i class="fa-brands fa-whatsapp"></i>
+              <div>
+                <strong>WHATSAPP</strong>
+                <p id="home-whatsapp-val">(21) 98556-1885</p>
+              </div>
+            </div>
+            <div class="slide-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <strong>SECRETARIA</strong>
+                <p>contato@censaparecida.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Direct Level buttons -->
+      <div class="hero-sidebar-buttons">
+        <a href="#segments" class="sidebar-btn btn-infantil">
+          <span>Educação Infantil</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </a>
+        <a href="#segments" class="sidebar-btn btn-fundamental">
+          <span>Fundamental I</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </a>
+        <a href="#segments" class="sidebar-btn btn-fundamental">
+          <span>Fundamental II</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </a>
+        <a href="#segments" class="sidebar-btn btn-medio">
+          <span>Ensino Médio</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </a>
+        <a href="#calendar" class="sidebar-btn btn-green">
+          <span><i class="fa-solid fa-calendar-days"></i> Cronograma do Mês</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </a>
+        <a href="#portal" class="sidebar-btn btn-green">
+          <span><i class="fa-solid fa-barcode"></i> 2ª via de boleto</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --- 5. MAIN CONTENT AREA (Grid Background) --- -->
+  <div class="main-page-wrapper">
+
+    <!-- --- DESTAQUES / NEWS SECTION --- -->
+    <section class="section-home-content">
+      <div class="container content-grid-sections">
+        
+        <!-- Left: Destaques Grid -->
+        <div class="left-highlights-area">
+          <div class="block-title-blue">
+            <h3>Destaques</h3>
+          </div>
+          
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <img src="assets/images/elementary_students.png" alt="Aulas práticas no CENSA">
+              <div class="highlight-body">
+                <h4>Feira de Ciências 2026</h4>
+                <p>Nossos alunos do Fundamental II apresentaram projetos focados em sustentabilidade urbana.</p>
+                <a href="#gallery" class="read-more">Ver fotos +</a>
+              </div>
+            </div>
+            <div class="highlight-card">
+              <img src="assets/images/hero_students.png" alt="Formatura e eventos">
+              <div class="highlight-body">
+                <h4>Encontro de Jovens Guanellianos</h4>
+                <p>Atividade focada na cidadania, acolhimento e partilha entre nossos estudantes do Ensino Médio.</p>
+                <a href="#gallery" class="read-more">Ver fotos +</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Monthly Calendar -->
+        <div class="right-calendar-area" id="calendar">
+          <div class="block-title-red">
+            <h3>Calendário Escolar</h3>
+          </div>
+          
+          <div class="school-calendar-widget">
+            <div class="calendar-header">
+              <span>JUNHO DE 2026</span>
+            </div>
+            <table class="calendar-table">
+              <thead>
+                <tr>
+                  <th>DOM</th>
+                  <th>SEG</th>
+                  <th>TER</th>
+                  <th>QUA</th>
+                  <th>QUI</th>
+                  <th>SEX</th>
+                  <th>SAB</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="empty">31</td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td class="event-day" title="Festa Junina do CENSA">5</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <td>10</td>
+                  <td>11</td>
+                  <td class="today">12</td>
+                  <td>13</td>
+                </tr>
+                <tr>
+                  <td>14</td>
+                  <td>15</td>
+                  <td>16</td>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>19</td>
+                  <td>20</td>
+                </tr>
+                <tr>
+                  <td>21</td>
+                  <td class="event-day" title="Início das Provas Trimestrais">22</td>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                  <td class="empty">1</td>
+                  <td class="empty">2</td>
+                  <td class="empty">3</td>
+                  <td class="empty">4</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="calendar-legend">
+              <p><span class="dot-legend dot-today"></span> Hoje</p>
+              <p><span class="dot-legend dot-event"></span> Evento Escolar</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- --- O COLÉGIO (ABOUT) --- -->
+    <section class="section-home-content" id="about">
+      <div class="container">
+        <div class="block-title-blue">
+          <h3>O Colégio - Nossa História</h3>
+        </div>
+        <div class="about-flex-container">
+          <div class="about-desc">
+            <p>
+              O **Centro Educacional Nossa Senhora Aparecida (CENSA)**, fundado em 1962, é uma tradicional instituição de ensino no bairro de Anchieta, Rio de Janeiro. Sob a direção das Filhas de Santa Maria da Providência (Irmãs Guanellianas), oferecemos educação de excelência da Educação Infantil ao Ensino Médio.
+            </p>
+            <p>
+              Nossa proposta pedagógica fundamenta-se no carisma de São Luís Guanella: a **pedagogia do amor, do acolhimento e da fraternidade**. Aqui, aprender é um processo integrado onde a excelência científica se une à formação humana e social.
+            </p>
+            <div class="about-points">
+              <div class="point-item"><i class="fa-solid fa-check"></i> Formação Integral e Humanizada</div>
+              <div class="point-item"><i class="fa-solid fa-check"></i> Infraestrutura Ampla e Segura</div>
+              <div class="point-item"><i class="fa-solid fa-check"></i> Equipe Pedagógica Qualificada</div>
+              <div class="point-item"><i class="fa-solid fa-check"></i> Valores Cristãos e Cidadania</div>
+            </div>
+          </div>
+          <div class="about-visual">
+            <img src="assets/images/highschool_students.png" alt="Biblioteca CENSA">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- SÉRIES E CURSOS (SEGMENTS) --- -->
+    <section class="section-home-content" id="segments">
+      <div class="container">
+        <div class="block-title-blue">
+          <h3>Séries e Cursos</h3>
+        </div>
+        
+        <div class="segments-cards-grid">
+          <!-- Card Infantil -->
+          <div class="segment-simple-card">
+            <div class="simple-card-img">
+              <img src="assets/images/kids_play.png" alt="Educação Infantil">
+            </div>
+            <div class="simple-card-body">
+              <h4>Educação Infantil</h4>
+              <p>Foco no desenvolvimento social, afetivo e cognitivo das crianças por meio de atividades lúdicas e interativas.</p>
+              <ul>
+                <li><i class="fa-solid fa-circle-play"></i> Psicomotricidade</li>
+                <li><i class="fa-solid fa-circle-play"></i> Socialização Lúdica</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card Fund I -->
+          <div class="segment-simple-card">
+            <div class="simple-card-img">
+              <img src="assets/images/elementary_students.png" alt="Ensino Fundamental I">
+            </div>
+            <div class="simple-card-body">
+              <h4>Ensino Fundamental I</h4>
+              <p>Alfabetização completa, raciocínio lógico e introdução à ciências de forma prática e estimulante.</p>
+              <ul>
+                <li><i class="fa-solid fa-circle-play"></i> Robótica Básica</li>
+                <li><i class="fa-solid fa-circle-play"></i> Projetos de Leitura</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card Fund II -->
+          <div class="segment-simple-card">
+            <div class="simple-card-img">
+              <img src="assets/images/elementary_students.png" alt="Ensino Fundamental II">
+            </div>
+            <div class="simple-card-body">
+              <h4>Ensino Fundamental II</h4>
+              <p>Desenvolvimento da autonomia nos estudos e consolidação de conhecimentos fundamentais.</p>
+              <ul>
+                <li><i class="fa-solid fa-circle-play"></i> Projetos Científicos</li>
+                <li><i class="fa-solid fa-circle-play"></i> Esportes Coletivos</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card Ensino Médio -->
+          <div class="segment-simple-card">
+            <div class="simple-card-img">
+              <img src="assets/images/highschool_students.png" alt="Ensino Médio">
+            </div>
+            <div class="simple-card-body">
+              <h4>Ensino Médio</h4>
+              <p>Preparação sólida e intensiva para o ENEM, UERJ e o mercado de trabalho com itinerários modernos.</p>
+              <ul>
+                <li><i class="fa-solid fa-circle-play"></i> Simulados e Cursinho</li>
+                <li><i class="fa-solid fa-circle-play"></i> Tutoria Vocacional</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- PROJETO SOCIAL CEOA --- -->
+    <section class="section-home-content" id="social">
+      <div class="container">
+        <div class="block-title-red">
+          <h3>Projeto Social - CEOA</h3>
+        </div>
+        
+        <div class="social-project-container">
+          <div class="social-img-box">
+            <img src="assets/images/social_project_activities.png" alt="Projeto Social CEOA">
+          </div>
+          <div class="social-text-box">
+            <h4>Centro Educativo Oásis da Alegria</h4>
+            <p>
+              O **CEOA** é a vertente de ação social do CENSA, atuando ativamente na comunidade de Anchieta. Funciona no contraturno escolar oferecendo oficinas socioeducativas totalmente gratuitas e alimentação balanceada.
+            </p>
+            <p>
+              Nosso objetivo é afastar crianças e jovens de situações de risco social, promovendo a cidadania através do esporte, da cultura e do suporte familiar.
+            </p>
+            <div class="social-workshops">
+              <span class="workshop-tag"><i class="fa-solid fa-dumbbell"></i> Karatê</span>
+              <span class="workshop-tag"><i class="fa-solid fa-palette"></i> Artesanato</span>
+              <span class="workshop-tag"><i class="fa-solid fa-music"></i> Dança</span>
+              <span class="workshop-tag"><i class="fa-solid fa-chess"></i> Xadrez</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- GALERIA DE FOTOS --- -->
+    <section class="section-home-content" id="gallery">
+      <div class="container">
+        <div class="block-title-blue">
+          <h3>Galeria de Fotos</h3>
+        </div>
+        
+        <div class="gallery-filter-buttons">
+          <button class="filter-btn-simple active" data-filter="all">Todos</button>
+          <button class="filter-btn-simple" data-filter="aulas">Aulas</button>
+          <button class="filter-btn-simple" data-filter="social">Projeto Social</button>
+          <button class="filter-btn-simple" data-filter="lazer">Esporte & Lazer</button>
+        </div>
+
+        <div class="simple-gallery-grid">
+          <div class="gallery-simple-item" data-category="aulas">
+            <img src="assets/images/elementary_students.png" alt="Aulas práticas">
+            <span class="gallery-label">Projetos de Aula</span>
+          </div>
+          <div class="gallery-simple-item" data-category="social">
+            <img src="assets/images/social_project_activities.png" alt="Karatê no CEOA">
+            <span class="gallery-label">Esporte Social</span>
+          </div>
+          <div class="gallery-simple-item" data-category="lazer">
+            <img src="assets/images/kids_play.png" alt="Recreação">
+            <span class="gallery-label">Educação Infantil</span>
+          </div>
+          <div class="gallery-simple-item" data-category="aulas">
+            <img src="assets/images/highschool_students.png" alt="Biblioteca">
+            <span class="gallery-label">Estudos</span>
+          </div>
+          <div class="gallery-simple-item" data-category="aulas">
+            <img src="assets/images/hero_students.png" alt="Estudantes">
+            <span class="gallery-label">Alunos CENSA</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- PORTAL DO ALUNO --- -->
+    <section class="section-home-content" id="portal">
+      <div class="container">
+        <div class="block-title-blue">
+          <h3>Portal Acadêmico</h3>
+        </div>
+        
+        <div class="simple-portal-container">
+          <!-- Form -->
+          <div class="simple-portal-login" id="portal-login">
+            <h4>Acesso Restrito</h4>
+            <p>Consulte boletins, notas, faltas e comunicados da coordenação.</p>
+            <form id="login-form">
+              <div class="form-item">
+                <label for="username">Código de Matrícula</label>
+                <input type="text" id="username" class="simple-input" placeholder="Digite sua matrícula (ex: 202601)" required>
+              </div>
+              <div class="form-item">
+                <label for="password">Senha de Acesso</label>
+                <input type="password" id="password" class="simple-input" placeholder="Digite sua senha" required>
+              </div>
+              <button type="submit" class="submit-btn-solid">Entrar</button>
+            </form>
+          </div>
+
+          <!-- Dashboard -->
+          <div class="simple-portal-dashboard" id="portal-dash" style="display:none;">
+            <div class="dashboard-header-simple">
+              <div>
+                <h4 id="user-display-name">Thiago Alves de Souza</h4>
+                <p>Matrícula: <span id="user-display-id">202601</span> | 2º Ano Ensino Médio</p>
+              </div>
+              <button id="logout-btn" class="logout-btn-simple">Sair do Painel</button>
+            </div>
+            
+            <div class="dashboard-content-simple">
+              <div class="boletim-box">
+                <h5>Boletim de Notas</h5>
+                <table class="boletim-table">
+                  <thead>
+                    <tr>
+                      <th>Disciplina</th>
+                      <th>1º Bim</th>
+                      <th>2º Bim</th>
+                      <th>Faltas</th>
+                      <th>Resultado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Matemática</td>
+                      <td>8.5</td>
+                      <td>9.0</td>
+                      <td>2</td>
+                      <td><span class="status-badge pass">Aprovado</span></td>
+                    </tr>
+                    <tr>
+                      <td>Língua Portuguesa</td>
+                      <td>7.0</td>
+                      <td>8.5</td>
+                      <td>1</td>
+                      <td><span class="status-badge pass">Aprovado</span></td>
+                    </tr>
+                    <tr>
+                      <td>Física</td>
+                      <td>9.2</td>
+                      <td>9.5</td>
+                      <td>0</td>
+                      <td><span class="status-badge pass">Aprovado</span></td>
+                    </tr>
+                    <tr>
+                      <td>História</td>
+                      <td>6.5</td>
+                      <td>8.0</td>
+                      <td>3</td>
+                      <td><span class="status-badge pass">Aprovado</span></td>
+                    </tr>
+                    <tr>
+                      <td>Química</td>
+                      <td>5.0</td>
+                      <td>4.5</td>
+                      <td>4</td>
+                      <td><span class="status-badge fail">Recuperação</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="noticias-boletim-box">
+                <h5>Mural de Avisos</h5>
+                <div class="aviso-item">
+                  <strong>Festa Junina do CENSA</strong>
+                  <p>Traga sua família para o nosso evento neste sábado às 13h!</p>
+                </div>
+                <div class="aviso-item">
+                  <strong>Calendário de Provas</strong>
+                  <p>Início das avaliações do 1º trimestre marcado para dia 22 de junho.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- CONTATO E LOCALIZAÇÃO --- -->
+    <section class="section-home-content" id="contact" style="padding-bottom: 80px;">
+      <div class="container">
+        <div class="block-title-blue">
+          <h3>Fale Conosco</h3>
+        </div>
+        
+        <div class="contact-simple-grid">
+          
+          <div class="contact-details-box">
+            <h4>Secretaria Escolar</h4>
+            <p>Entre em contato ou venha nos fazer uma visita. Estamos prontos para lhe atender.</p>
+            <ul class="contact-details-list">
+              <li><i class="fa-solid fa-location-dot"></i> Rua Faustino Lins, 898, Anchieta, Rio de Janeiro - RJ</li>
+              <li><i class="fa-solid fa-phone"></i> (21) 2455-6582</li>
+              <li><i class="fa-brands fa-whatsapp"></i> (21) 98556-1885</li>
+              <li><i class="fa-solid fa-envelope"></i> contato@censaparecida.com</li>
+            </ul>
+            
+            <div class="mock-map-box">
+              <div class="mock-map-visual">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p><strong>CENSA Anchieta</strong></p>
+                <p><small>Rua Faustino Lins, 898 (próximo à Estação de Anchieta)</small></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-box">
+            <h4>Enviar Mensagem</h4>
+            <form id="contact-form">
+              <div class="form-row-simple">
+                <div class="form-item">
+                  <label for="contact-name">Seu Nome</label>
+                  <input type="text" id="contact-name" class="simple-input" placeholder="Digite seu nome" required>
+                </div>
+                <div class="form-item">
+                  <label for="contact-email">Seu E-mail</label>
+                  <input type="email" id="contact-email" class="simple-input" placeholder="Digite seu e-mail" required>
+                </div>
+              </div>
+              <div class="form-item">
+                <label for="contact-subject">Assunto da Mensagem</label>
+                <select id="contact-subject" class="simple-input" required>
+                  <option value="">Selecione um assunto</option>
+                  <option value="matriculas">Matrículas e Vagas</option>
+                  <option value="secretaria">Secretaria Geral</option>
+                  <option value="ceoa">Projeto Social CEOA</option>
+                  <option value="outros">Outros Assuntos</option>
+                </select>
+              </div>
+              <div class="form-item">
+                <label for="contact-message">Sua Mensagem</label>
+                <textarea id="contact-message" class="simple-input" rows="5" placeholder="Escreva aqui..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn-solid" id="submit-contact-btn">Enviar Mensagem</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- --- 6. FOOTER --- -->
+  <footer class="main-footer">
+    <div class="container footer-flex-container">
+      <div class="footer-block">
+        <h4>COLÉGIO CENSA</h4>
+        <p>Centro Educacional Nossa Senhora Aparecida</p>
+        <p><small>Educando com amor, acolhimento e compromisso social desde 1962.</small></p>
+      </div>
+      <div class="footer-block">
+        <h4>Acesso Rápido</h4>
+        <ul class="footer-links-list">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#about">Quem Somos</a></li>
+          <li><a href="#segments">Séries e Cursos</a></li>
+          <li><a href="#social">Projeto Social</a></li>
+          <li><a href="#portal">Portal do Aluno</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <h4>Filhas de Santa Maria da Providência</h4>
+        <p>Uma obra educativa inspirada na pedagogia guanelliana.</p>
+        <p><small>Secretaria: (21) 2455-6582 | Whatsapp: (21) 98556-1885</small></p>
+      </div>
+    </div>
+    <div class="footer-credits">
+      <div class="container">
+        <p>&copy; 2026 Centro Educacional Nossa Senhora Aparecida. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
