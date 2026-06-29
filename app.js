@@ -281,15 +281,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Tilt math: max angle 12 degrees
         const tiltX = ((centerY - y) / centerY) * 12;
-        const tiltY = ((x - centerX) / centerX) * 12;
         
-        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-8px) scale(1.02)`;
+        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) translateY(-8px) scale(1.02)`;
         el.style.boxShadow = '0 15px 35px rgba(0, 68, 204, 0.15), 0 0 20px rgba(0, 68, 204, 0.1)';
         el.style.transition = 'none';
       });
       
       el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)';
+        el.style.transform = 'perspective(1000px) rotateX(0deg) translateY(0px) scale(1)';
         el.style.boxShadow = '';
         el.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease';
       });

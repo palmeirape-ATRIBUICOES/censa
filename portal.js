@@ -946,14 +946,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         const tiltX = ((centerY - y) / centerY) * 10;
-        const tiltY = ((x - centerX) / centerX) * 10;
         
-        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.01)`;
+        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) scale(1.01)`;
         el.style.transition = 'none';
       });
       
       el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        el.style.transform = 'perspective(1000px) rotateX(0deg) scale(1)';
         el.style.transition = 'transform 0.5s ease';
       });
     });
