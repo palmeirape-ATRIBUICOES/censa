@@ -321,6 +321,10 @@ img {
   align-items: center;
 }
 
+.mobile-nav-logo {
+  display: none;
+}
+
 .nav-menu-list {
   display: flex;
   width: 100%;
@@ -1567,6 +1571,42 @@ img {
   .mobile-utility-links a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
+  }
+
+  .main-nav-container {
+    flex-wrap: wrap;
+    padding: 0 16px;
+  }
+
+  .mobile-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 0;
+  }
+
+  .mobile-nav-logo-icon {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--gold-accent) 0%, #f57f17 100%);
+    color: var(--blue-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+
+  .mobile-nav-logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
   }
 
   .main-header-flex {

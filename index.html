@@ -44,12 +44,7 @@
         </div>
       </a>
       
-      <div class="header-search-box">
-        <form id="search-form" onsubmit="event.preventDefault(); alert('Pesquisa simulada realizada!');">
-          <input type="text" placeholder="Encontre no Colégio CENSA..." class="search-input" required>
-          <button type="submit" class="search-btn">BUSCAR</button>
-        </form>
-      </div>
+
 
       <div class="header-social-box">
         <span>Redes:</span>
@@ -62,6 +57,12 @@
   <!-- --- 3. SOLID NAVIGATION BAR --- -->
   <nav class="main-nav" id="main-nav-bar">
     <div class="container main-nav-container">
+      <!-- Mobile Logo Area (visible only on mobile) -->
+      <a href="#home" class="mobile-nav-logo">
+        <div class="mobile-nav-logo-icon">C</div>
+        <div class="mobile-nav-logo-text">COLÉGIO CENSA</div>
+      </a>
+      
       <ul class="nav-menu-list" id="nav-menu-list">
         <li><a href="#home" class="nav-menu-link active">INICIAL</a></li>
         <li><a href="#about" class="nav-menu-link">O COLÉGIO</a></li>
