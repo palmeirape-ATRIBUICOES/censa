@@ -1,0 +1,16 @@
+{
+  "name": "censa-portal-tests",
+  "version": "1.0.0",
+  "description": "Suite de testes automatizados para o Portal do Aluno do Colegio CENSA",
+  "main": "portal.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+}

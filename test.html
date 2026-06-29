@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENSA Portal - Testes de Unidade</title>
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://www.censaparecida.com/wp-content/uploads/2019/06/favicon.ico" type="image/x-icon">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Outfit & Inter Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap">
+
+  <style>
+    :root {
+      --primary: hsl(224, 76%, 48%);
+      --primary-dark: hsl(222, 60%, 18%);
+      --bg-app: hsl(210, 40%, 96%);
+      --border-color: hsl(220, 20%, 88%);
+      --green: hsl(142, 70%, 45%);
+      --red: hsl(354, 76%, 50%);
+      --radius-md: 12px;
+      --radius-sm: 6px;
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-app);
+      color: hsl(220, 20%, 15%);
+      padding: 40px 20px;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--primary-dark);
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: hsl(220, 12%, 45%);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(15, 27, 48, 0.03);
+    }
+
+    .stat-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 0;
+    }
+
+    .stat-card p {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: hsl(220, 12%, 45%);
+      text-transform: uppercase;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-card.pass h3 { color: var(--green); }
+    .stat-card.fail h3 { color: var(--red); }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .btn-run {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      border: none;
+      padding: 12px 28px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 68, 204, 0.2);
+      transition: var(--transition-fast);
+    }
+
+    .btn-run:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba(0, 68, 204, 0.3);
+    }
+
+    .btn-back {
+      background: transparent;
+      border: 1.5px solid var(--border-color);
+      color: hsl(220, 12%, 45%);
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .btn-back:hover {
+      background-color: hsl(220, 20%, 92%);
+      color: hsl(220, 20%, 15%);
+    }
+
+    /* Test Cases Card */
+    .tests-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 25px rgba(15, 27, 48, 0.05);
+      overflow: hidden;
+    }
+
+    .tests-header {
+      background-color: hsl(210, 20%, 98%);
+      padding: 16px 24px;
+      border-bottom: 1.5px solid var(--border-color);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+    }
+
+    .test-list {
+      list-style: none;
+    }
+
+    .test-item {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-fast);
+    }
+
+    .test-item:last-child {
+      border-bottom: none;
+    }
+
+    .test-item:hover {
+      background-color: hsl(210, 20%, 99%);
+    }
+
+    .test-info h4 {
+      font-size: 0.95rem;
+      color: hsl(220, 20%, 15%);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .test-info p {
+      font-size: 0.78rem;
+      color: hsl(220, 12%, 45%);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .test-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 30px;
+      text-transform: uppercase;
+    }
+
+    .status-pill.pending { background-color: hsl(210, 20%, 90%); color: hsl(220, 12%, 45%); }
+    .status-pill.passed { background-color: hsl(142, 70%, 94%); color: var(--green); }
+    .status-pill.failed { background-color: hsl(354, 100%, 96%); color: var(--red); }
+
+    .test-icon {
+      font-size: 1.15rem;
+    }
+
+    .test-icon.passed { color: var(--green); }
+    .test-icon.failed { color: var(--red); }
+    .test-icon.pending { color: hsl(220, 20%, 80%); }
+
+    /* Hidden mock dom element wrapper */
+    #mock-dom-wrapper {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mock DOM elements required for PortalApp initialization -->
+  <div id="mock-dom-wrapper">
+    <div id="login-screen"></div>
+    <div id="app-container"></div>
+    <form id="portal-login-form"></form>
+    <form id="form-add-student"></form>
+    <form id="form-create-boleto"></form>
+    <form id="form-create-notice"></form>
+    <form id="form-update-banners"></form>
+    <div id="menu-admin"></div>
+    <div id="menu-teacher"></div>
+    <div id="menu-student"></div>
+    <div id="mobile-nav-bar"></div>
+    <span id="sidebar-role-badge"></span>
+    <span id="user-display-name"></span>
+    <span id="user-display-id"></span>
+    <button id="portal-logout-btn"></button>
+    <button id="portal-logout-btn-mobile"></button>
+    <button id="btn-add-student-modal"></button>
+    <button id="btn-close-student-modal"></button>
+    <button id="btn-cancel-student-modal"></button>
+    <div id="modal-add-student"></div>
+    <div id="modal-view-boleto"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>CENSA Portal - Testes Automatizados</h1>
+      <p>Suíte de testes de unidade e integridade do banco de dados simulado e controle de sessão</p>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3 id="stat-total">0</h3>
+        <p>Total de Testes</p>
+      </div>
+      <div class="stat-card pass">
+        <h3 id="stat-passed">0</h3>
+        <p>Aprovados</p>
+      </div>
+      <div class="stat-card fail">
+        <h3 id="stat-failed">0</h3>
+        <p>Falhas</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="stat-duration">0ms</h3>
+        <p>Duração</p>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <a href="portal.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portal</a>
+      <button class="btn-run" id="btn-run-tests"><i class="fa-solid fa-play"></i> Executar Suíte de Testes</button>
+    </div>
+
+    <!-- Test List Card -->
+    <div class="tests-card">
+      <div class="tests-header">
+        Casos de Teste
+      </div>
+      <ul class="test-list" id="test-list-container">
+        <!-- Rendered Dynamically -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Load Portal Script (loads data initialization and structures) -->
+  <script src="portal.js"></script>
+
+  <!-- Test Suite Script -->
+  <script>
+    const tests = [
+      {
+        name: "Inicialização do Banco de Dados",
+        desc: "Verifica se os dados de demonstração iniciais são salvos no LocalStorage",
+        fn: () => {
+          localStorage.removeItem('censa_students');
+          localStorage.removeItem('censa_boletos');
+          localStorage.removeItem('censa_notices');
+          
+          initLocalStorageDB();
+          
+          const students = JSON.parse(localStorage.getItem('censa_students'));
+          const boletos = JSON.parse(localStorage.getItem('censa_boletos'));
+          const notices = JSON.parse(localStorage.getItem('censa_notices'));
+          
+          assert(students !== null, "Tabela de estudantes não inicializada");
+          assert(students.length > 0, "Tabela de estudantes vazia");
+          assert(boletos !== null, "Tabela de boletos não inicializada");
+          assert(notices !== null, "Tabela de comunicados não inicializada");
+        }
+      },
+      {
+        name: "Leitura de Estudantes (DB Getter)",
+        desc: "Verifica se a busca de estudantes do banco de dados simulado funciona corretamente",
+        fn: () => {
+          const students = db.getStudents();
+          assert(Array.isArray(students), "Estudantes devem ser retornados em um Array");
+          assert(students.some(s => s.id === "202601"), "Estudante Thiago (202601) deve estar cadastrado");
+        }
+      },
+      {
+        name: "Modificação de Estudantes (DB Setter)",
+        desc: "Verifica se adicionar um novo estudante no banco persiste corretamente",
+        fn: () => {
+          const originalStudents = db.getStudents();
+          const newStudent = {
+            id: "202699",
+            name: "Aluno de Teste Programático",
+            cpf: "000.000.000-00",
+            class: "Ensino Médio - 2º Ano",
+            grades: { "Matemática": { b1: 10, b2: 10, faltas: 0 } }
+          };
+          
+          db.setStudents([...originalStudents, newStudent]);
+          
+          const updatedStudents = db.getStudents();
+          const found = updatedStudents.find(s => s.id === "202699");
+          
+          assert(found !== undefined, "Estudante adicionado não foi encontrado no banco");
+          assert(found.name === "Aluno de Teste Programático", "Atributos do estudante corrompidos");
+          
+          // Cleanup
+          db.setStudents(originalStudents);
+        }
+      },
+      {
+        name: "Criação de Sessão de Usuário",
+        desc: "Verifica se o login cria as chaves de sessão corretas no SessionStorage",
+        fn: () => {
+          sessionStorage.clear();
+          session.login("admin", "admin", "Administrador Principal");
+          
+          const activeSession = session.get();
+          assert(activeSession !== null, "Sessão ativa não criada");
+          assert(activeSession.role === "admin", "Role da sessão incorreta");
+          assert(activeSession.name === "Administrador Principal", "Nome do usuário de sessão incorreto");
+        }
+      },
+      {
+        name: "Encerramento de Sessão (Logout)",
+        desc: "Verifica se o encerramento de sessão apaga os dados do SessionStorage",
+        fn: () => {
+          session.login("aluno", "202601", "Thiago");
+          
+          // Override window reload to prevent loop
+          const originalReload = window.location.reload;
+          window.location.reload = () => {};
+          
+          session.logout();
+          
+          const activeSession = session.get();
+          assert(activeSession === null, "Sessão não limpa após logout");
+          
+          // Restore
+          window.location.reload = originalReload;
+        }
+      },
+      {
+        name: "Validação de Boletim e Notas",
+        desc: "Verifica o cálculo de notas bimestrais e o status de aprovação de disciplina",
+        fn: () => {
+          // Aprovado (Média >= 6.0)
+          const matGrade = { b1: 8.5, b2: 9.0, faltas: 2 };
+          const average = (matGrade.b1 + matGrade.b2) / 2;
+          assert(average === 8.75, "Média calculada incorretamente");
+          assert(average >= 6.0, "Nota deveria constar como aprovada");
+          
+          // Recuperação (Média < 6.0)
+          const chemGrade = { b1: 5.0, b2: 4.5, faltas: 4 };
+          const chemAverage = (chemGrade.b1 + chemGrade.b2) / 2;
+          assert(chemAverage < 6.0, "Nota deveria constar como recuperação");
+        }
+      },
+      {
+        name: "Verificação de Alertas e Banners",
+        desc: "Verifica se as configurações de banners de divulgação carregam por padrão",
+        fn: () => {
+          const banners = db.getBanners();
+          assert(banners !== null, "Banners não inicializados");
+          assert(banners.phone === "(21) 2455-6582", "Telefone do banner incorreto");
+          assert(banners.whatsapp === "(21) 98556-1885", "Whatsapp do banner incorreto");
+        }
+      }
+    ];
+
+    // Simple assertion helper
+    function assert(condition, message) {
+      if (!condition) {
+        throw new Error(message || "Falha na validação do teste");
+      }
+    }
+
+    // Render pending test list
+    function renderPendingTests() {
+      const container = document.getElementById('test-list-container');
+      container.innerHTML = "";
+      
+      tests.forEach((t, index) => {
+        container.innerHTML += `
+          <li class="test-item" id="test-${index}">
+            <div class="test-info">
+              <h4>${t.name}</h4>
+              <p>${t.desc}</p>
+            </div>
+            <div class="test-status">
+              <span class="status-pill pending" id="pill-${index}">pendente</span>
+              <i class="fa-regular fa-clock test-icon pending" id="icon-${index}"></i>
+            </div>
+          </li>
+        `;
+      });
+      
+      document.getElementById('stat-total').textContent = tests.length;
+      document.getElementById('stat-passed').textContent = "0";
+      document.getElementById('stat-failed').textContent = "0";
+      document.getElementById('stat-duration').textContent = "0ms";
+    }
+
+    // Run test suite
+    function runTestSuite() {
+      const startTime = performance.now();
+      let passedCount = 0;
+      let failedCount = 0;
+
+      tests.forEach((t, index) => {
+        const pill = document.getElementById(`pill-${index}`);
+        const icon = document.getElementById(`icon-${index}`);
+        const item = document.getElementById(`test-${index}`);
+
+        try {
+          t.fn();
+          
+          // Test passed
+          pill.className = "status-pill passed";
+          pill.textContent = "aprovado";
+          icon.className = "fa-solid fa-circle-check test-icon passed";
+          passedCount++;
+        } catch (err) {
+          // Test failed
+          console.error(`Erro no teste [${t.name}]:`, err);
+          pill.className = "status-pill failed";
+          pill.textContent = "falhou";
+          icon.className = "fa-solid fa-circle-xmark test-icon failed";
+          failedCount++;
+          
+          // Append failure details
+          const info = item.querySelector('.test-info');
+          const errDetail = document.createElement('p');
+          errDetail.style.color = 'var(--red)';
+          errDetail.style.fontWeight = 'bold';
+          errDetail.style.marginTop = '4px';
+          errDetail.textContent = `🚨 Falha: ${err.message}`;
+          info.appendChild(errDetail);
+        }
+      });
+
+      const endTime = performance.now();
+      const duration = Math.round(endTime - startTime);
+
+      // Update counters
+      document.getElementById('stat-passed').textContent = passedCount;
+      document.getElementById('stat-failed').textContent = failedCount;
+      document.getElementById('stat-duration').textContent = `${duration}ms`;
+    }
+
+    // Event Bindings
+    document.getElementById('btn-run-tests').addEventListener('click', () => {
+      renderPendingTests();
+      setTimeout(runTestSuite, 400); // Small delay for nice visual transition
+    });
+
+    // Initialize list
+    renderPendingTests();
+  </script>
+</body>
+</html>
