@@ -931,8 +931,31 @@ class PortalApp {
   }
 }
 
-// Initialise Application Instance global-friendly
 let portalApp;
 document.addEventListener('DOMContentLoaded', () => {
   portalApp = new PortalApp();
+
+  // --- 3D Mouse Tilt Effect for Portal Login Card ---
+  const tiltElements = document.querySelectorAll('.tilt-3d');
+  if (tiltElements.length > 0) {
+    tiltElements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const tiltX = ((centerY - y) / centerY) * 10;
+        const tiltY = ((x - centerX) / centerX) * 10;
+        
+        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.01)`;
+        el.style.transition = 'none';
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        el.style.transition = 'transform 0.5s ease';
+      });
+    });
+  }
 });
