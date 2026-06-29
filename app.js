@@ -1,7 +1,7 @@
 /* 
 =========================================
   CENSA - Centro Educacional Nossa Senhora Aparecida
-  Interactive Features (Simple & Practical Layout)
+  Interactive Features (Premium Aesthetics & Visual Effects)
 =========================================
 */
 
@@ -186,6 +186,84 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } catch (err) {
     console.error("Error loading banners: ", err);
+  }
+
+
+  // --- 7. Scroll Reveal Animation Logic ---
+  const revealSections = document.querySelectorAll('.reveal-section');
+  
+  if (revealSections.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target); // Animates only once
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+    
+    revealSections.forEach(section => {
+      revealObserver.observe(section);
+    });
+  }
+
+
+  // --- 8. Back to Top Button Interaction ---
+  const backToTopBtn = document.getElementById('back-to-top');
+  
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('active');
+      } else {
+        backToTopBtn.classList.remove('active');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+
+  // --- 9. Dynamic Banner Carousel simulation ---
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  let currentSlide = 0;
+  
+  if (dots.length > 0) {
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        dots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        currentSlide = index;
+        
+        // Dynamic banner copy rotation on dot clicks
+        if (homePromoTitle) {
+          const bannersDB = JSON.parse(localStorage.getItem('censa_banners')) || {};
+          const defaultPromoText = bannersDB.promoText || "MATRÍCULAS E INSCRIÇÕES ABERTAS!";
+          
+          if (index === 0) {
+            homePromoTitle.textContent = defaultPromoText;
+          } else if (index === 1) {
+            homePromoTitle.textContent = "EDUCAÇÃO HUMANIZADA E VALORES GUANELLIANOS!";
+          } else if (index === 2) {
+            homePromoTitle.textContent = "INFRAESTRUTURA COMPLETA E SEGURA PARA SEU FILHO!";
+          }
+        }
+      });
+    });
+
+    // Auto rotate every 6 seconds
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % dots.length;
+      dots[currentSlide].click();
+    }, 6000);
   }
 
 });
