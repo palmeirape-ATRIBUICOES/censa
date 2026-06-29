@@ -116,11 +116,20 @@ const session = {
   get: () => JSON.parse(sessionStorage.getItem('censa_session'))
 };
 
+// Expose globally for testing environments
+if (typeof window !== 'undefined') {
+  window.db = db;
+  window.session = session;
+}
+
 
 // --- 3. CORE PORTAL ENGINE CLASS ---
 class PortalApp {
   constructor() {
     this.sessionData = null;
+    this.adminView = new AdminView(this);
+    this.teacherView = new TeacherView(this);
+    this.studentView = new StudentView(this);
     this.initElements();
     this.bindEvents();
     this.checkActiveSession();
@@ -410,7 +419,44 @@ class PortalApp {
   // =========================================
   // --- RENDERS: ADMINISTRATOR PANEL ---
   // =========================================
-  renderAdminDash() {
+  // Facade delegation methods to separate views (SOLID Refactoring)
+  renderAdminDash() { this.adminView.renderDash(); }
+  renderAdminStudentsTable() { this.adminView.renderStudentsTable(); }
+  openStudentModal(editIndex = -1) { this.adminView.openStudentModal(editIndex); }
+  closeStudentModal() { this.adminView.closeStudentModal(); }
+  handleStudentSubmit(e) { this.adminView.handleStudentSubmit(e); }
+  deleteStudent(id) { this.adminView.deleteStudent(id); }
+  renderAdminBoletosTab() { this.adminView.renderBoletosTab(); }
+  handleBoletoSubmit(e) { this.adminView.handleBoletoSubmit(e); }
+  toggleBoletoStatus(id, newStatus) { this.adminView.toggleBoletoStatus(id, newStatus); }
+  deleteBoleto(id) { this.adminView.deleteBoleto(id); }
+  renderAdminNoticesTab() { this.adminView.renderNoticesTab(); }
+  handleNoticeSubmit(e) { this.adminView.handleNoticeSubmit(e); }
+  deleteNotice(id) { this.adminView.deleteNotice(id); }
+  renderAdminBannersTab() { this.adminView.renderBannersTab(); }
+  handleBannersSubmit(e) { this.adminView.handleBannersSubmit(e); }
+
+  renderTeacherDash() { this.teacherView.renderDash(); }
+  renderTeacherGradesTable() { this.teacherView.renderGradesTable(); }
+  handleTeacherGradesSave() { this.teacherView.handleTeacherGradesSave(); }
+
+  renderStudentDash() { this.studentView.renderDash(); }
+  renderStudentBoletim() { this.studentView.renderBoletim(); }
+  renderStudentFinanceiro() { this.studentView.renderFinanceiro(); }
+  openBoletoPrintModal(boletoId) { this.studentView.openBoletoPrintModal(boletoId); }
+  renderStudentMural() { this.studentView.renderMural(); }
+}
+
+// =========================================
+// --- VIEW CONTROLLERS (SOLID EXTRACT CLASS) ---
+// =========================================
+
+class AdminView {
+  constructor(app) {
+    this.app = app;
+  }
+
+  renderDash() {
     const students = db.getStudents();
     const boletos = db.getBoletos();
     const notices = db.getNotices();
@@ -453,7 +499,7 @@ class PortalApp {
     recentBoletosTbody.innerHTML = bolHtml;
   }
 
-  renderAdminStudentsTable() {
+  renderStudentsTable() {
     const students = db.getStudents();
     const tbody = document.getElementById('admin-students-table-tbody');
     let html = '';
@@ -476,7 +522,7 @@ class PortalApp {
   }
 
   openStudentModal(editIndex = -1) {
-    this.modalAddStudent.classList.add('active');
+    this.app.modalAddStudent.classList.add('active');
     const title = document.getElementById('modal-student-title');
     const inputIndex = document.getElementById('edit-student-index');
     
@@ -503,7 +549,7 @@ class PortalApp {
       title.textContent = "Adicionar Novo Aluno";
       inputIndex.value = '';
       
-      this.studentForm.reset();
+      this.app.studentForm.reset();
       idInput.disabled = false;
       // Auto-generate random matricula for convenience
       idInput.value = Math.floor(202600 + Math.random() * 999).toString();
@@ -511,8 +557,8 @@ class PortalApp {
   }
 
   closeStudentModal() {
-    this.modalAddStudent.classList.remove('active');
-    this.studentForm.reset();
+    this.app.modalAddStudent.classList.remove('active');
+    this.app.studentForm.reset();
   }
 
   handleStudentSubmit(e) {
@@ -556,7 +602,7 @@ class PortalApp {
     }
 
     this.closeStudentModal();
-    this.renderAdminStudentsTable();
+    this.renderStudentsTable();
   }
 
   deleteStudent(id) {
@@ -564,11 +610,11 @@ class PortalApp {
       let students = db.getStudents();
       students = students.filter(s => s.id !== id);
       db.setStudents(students);
-      this.renderAdminStudentsTable();
+      this.renderStudentsTable();
     }
   }
 
-  renderAdminBoletosTab() {
+  renderBoletosTab() {
     const students = db.getStudents();
     const boletos = db.getBoletos();
     
@@ -621,7 +667,7 @@ class PortalApp {
     db.setBoletos(boletos);
     
     alert("Boleto emitido com sucesso para a conta do aluno!");
-    this.renderAdminBoletosTab();
+    this.renderBoletosTab();
   }
 
   toggleBoletoStatus(id, newStatus) {
@@ -630,7 +676,7 @@ class PortalApp {
     if (idx > -1) {
       boletos[idx].status = newStatus;
       db.setBoletos(boletos);
-      this.renderAdminBoletosTab();
+      this.renderBoletosTab();
     }
   }
 
@@ -639,11 +685,11 @@ class PortalApp {
       let boletos = db.getBoletos();
       boletos = boletos.filter(b => b.id !== id);
       db.setBoletos(boletos);
-      this.renderAdminBoletosTab();
+      this.renderBoletosTab();
     }
   }
 
-  renderAdminNoticesTab() {
+  renderNoticesTab() {
     const notices = db.getNotices();
     const div = document.getElementById('admin-notices-list');
     let html = '';
@@ -680,8 +726,8 @@ class PortalApp {
     db.setNotices(notices);
     
     alert("Comunicado publicado no mural com sucesso!");
-    this.noticeForm.reset();
-    this.renderAdminNoticesTab();
+    this.app.noticeForm.reset();
+    this.renderNoticesTab();
   }
 
   deleteNotice(id) {
@@ -689,11 +735,11 @@ class PortalApp {
       let notices = db.getNotices();
       notices = notices.filter(n => n.id !== id);
       db.setNotices(notices);
-      this.renderAdminNoticesTab();
+      this.renderNoticesTab();
     }
   }
 
-  renderAdminBannersTab() {
+  renderBannersTab() {
     const banners = db.getBanners();
     document.getElementById('banner-promo-text').value = banners.promoText;
     document.getElementById('banner-phone').value = banners.phone;
@@ -710,17 +756,18 @@ class PortalApp {
     db.setBanners(banners);
     alert("Configurações do site atualizadas! O banner promocional público foi alterado.");
   }
+}
 
+class TeacherView {
+  constructor(app) {
+    this.app = app;
+  }
 
-  // =========================================
-  // --- RENDERS: TEACHER PANEL ---
-  // =========================================
-  renderTeacherDash() {
+  renderDash() {
     const notices = db.getNotices();
     const listDiv = document.getElementById('teacher-notices-list');
     let html = '';
     
-    // Filter notices targeted to teachers or all
     const teacherNotices = notices.filter(n => n.target === 'todos' || n.target === 'professores');
     teacherNotices.forEach(n => {
       html += `
@@ -738,18 +785,16 @@ class PortalApp {
     listDiv.innerHTML = html;
   }
 
-  renderTeacherGradesTable() {
+  renderGradesTable() {
     const subject = document.getElementById('teacher-select-subject').value;
     const className = document.getElementById('teacher-select-class').value;
     const students = db.getStudents();
     
-    // Filter students belonging to the selected class/grade level
     const filteredStudents = students.filter(s => s.class === className);
     const tbody = document.getElementById('teacher-grades-table-tbody');
     let html = '';
 
     filteredStudents.forEach(s => {
-      // Fetch or init subject grades if not present
       if (!s.grades[subject]) {
         s.grades[subject] = { b1: 0, b2: 0, faltas: 0 };
       }
@@ -805,19 +850,21 @@ class PortalApp {
 
     db.setStudents(students);
     alert("Notas e faltas lançadas com sucesso!");
-    this.renderTeacherGradesTable();
+    this.renderGradesTable();
+  }
+}
+
+class StudentView {
+  constructor(app) {
+    this.app = app;
   }
 
-
-  // =========================================
-  // --- RENDERS: STUDENT PANEL ---
-  // =========================================
-  renderStudentDash() {
-    this.renderStudentBoletim();
+  renderDash() {
+    this.renderBoletim();
   }
 
-  renderStudentBoletim() {
-    const username = this.sessionData.username;
+  renderBoletim() {
+    const username = this.app.sessionData.username;
     const students = db.getStudents();
     const student = students.find(s => s.id === username);
     
@@ -853,8 +900,8 @@ class PortalApp {
     tbody.innerHTML = html;
   }
 
-  renderStudentFinanceiro() {
-    const username = this.sessionData.username;
+  renderFinanceiro() {
+    const username = this.app.sessionData.username;
     const boletos = db.getBoletos();
     const studentBoletos = boletos.filter(b => b.studentId === username);
     
@@ -894,26 +941,23 @@ class PortalApp {
     const student = students.find(s => s.id === b.studentId);
     const studentName = student ? student.name : "Sacado";
 
-    // Set printable content details
     document.getElementById('boleto-print-doc-num').textContent = b.id;
     document.getElementById('boleto-print-value').textContent = `R$ ${b.value},00`;
     document.getElementById('boleto-print-value-cobrado').textContent = `R$ ${b.value},00`;
     document.getElementById('boleto-print-sacado').textContent = `${studentName} (CPF: ${student ? student.cpf : '000.000.000-00'})`;
 
-    // Open Modal
-    this.modalViewBoleto.classList.add('active');
+    this.app.modalViewBoleto.classList.add('active');
   }
 
-  renderStudentMural() {
+  renderMural() {
     const notices = db.getNotices();
     const div = document.getElementById('student-notices-timeline');
     let html = '';
 
-    // Notices targeting 'todos' or 'alunos'
     const studentNotices = notices.filter(n => n.target === 'todos' || n.target === 'alunos');
     
     studentNotices.forEach((n, idx) => {
-      const isUrgent = idx === 0 ? 'urgent' : ''; // Mock urgent tag
+      const isUrgent = idx === 0 ? 'urgent' : '';
       html += `
         <div class="timeline-card ${isUrgent}">
           <h4>${n.title}</h4>

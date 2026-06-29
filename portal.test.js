@@ -108,8 +108,9 @@ describe('CENSA Portal - Controle de Sessao (SessionStorage)', () => {
     expect(session.get()).not.toBeNull();
     
     // Mock reload to prevent loop
-    const originalReload = window.location.reload;
-    window.location.reload = jest.fn();
+    const originalLocation = window.location;
+    delete window.location;
+    window.location = { reload: jest.fn() };
     
     session.logout();
     
@@ -117,7 +118,7 @@ describe('CENSA Portal - Controle de Sessao (SessionStorage)', () => {
     expect(window.location.reload).toHaveBeenCalled();
     
     // Restore
-    window.location.reload = originalReload;
+    window.location = originalLocation;
   });
 });
 
