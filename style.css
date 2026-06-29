@@ -1493,6 +1493,10 @@ img {
   transform: translateY(0);
 }
 
+.mobile-bottom-utility-bar {
+  display: none;
+}
+
 /* --- Responsive Layout adjustments --- */
 @media (max-width: 1024px) {
   .hero-grid-container {
@@ -1517,6 +1521,54 @@ img {
 }
 
 @media (max-width: 768px) {
+  .top-bar {
+    display: none;
+  }
+
+  .mobile-bottom-utility-bar {
+    display: block;
+    background-color: var(--blue-top);
+    border-top: 2px solid var(--gold-accent);
+    padding: 20px 24px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.72rem;
+  }
+
+  .mobile-utility-info {
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    opacity: 0.95;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .mobile-utility-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 8px;
+  }
+
+  .mobile-utility-links a {
+    color: var(--gold-accent);
+    font-weight: 800;
+    font-size: 0.78rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+  }
+
+  .mobile-utility-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+
   .main-header-flex {
     flex-direction: column;
     align-items: stretch;
