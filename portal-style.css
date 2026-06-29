@@ -583,8 +583,8 @@ select, input, textarea, button {
 
 .metric-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(0, 68, 204, 0.15);
+  box-shadow: var(--shadow-md), 0 0 15px rgba(255, 193, 7, 0.05);
+  border-color: var(--gold-accent);
 }
 
 .metric-icon {
@@ -690,7 +690,8 @@ select, input, textarea, button {
 }
 
 .app-table tbody tr:hover {
-  background-color: hsl(210, 20%, 98%);
+  background-color: hsla(224, 76%, 48%, 0.02);
+  box-shadow: inset 3px 0 0 var(--gold-accent);
 }
 
 /* Buttons inside workspaces */
@@ -918,8 +919,16 @@ select, input, textarea, button {
   text-transform: uppercase;
 }
 
-.status-badge.pago { background-color: hsl(142, 70%, 94%); color: var(--green); }
-.status-badge.pendente { background-color: hsl(354, 100%, 96%); color: var(--secondary); }
+.status-badge.pago {
+  background-color: hsla(142, 70%, 45%, 0.12);
+  color: hsl(142, 70%, 32%);
+  border: 1px solid hsla(142, 70%, 45%, 0.25);
+}
+.status-badge.pendente {
+  background-color: hsla(354, 76%, 50%, 0.1);
+  color: hsl(354, 76%, 42%);
+  border: 1px solid hsla(354, 76%, 50%, 0.25);
+}
 
 /* Teacher Dashboard */
 .teacher-class-grid {
@@ -1027,8 +1036,16 @@ select, input, textarea, button {
   text-transform: uppercase;
 }
 
-.boletim-badge.aprovado { background-color: hsl(142, 70%, 94%); color: var(--green); }
-.boletim-badge.recuperacao { background-color: hsl(354, 100%, 96%); color: var(--secondary); }
+.boletim-badge.aprovado {
+  background-color: hsla(142, 70%, 45%, 0.12);
+  color: hsl(142, 70%, 32%);
+  border: 1px solid hsla(142, 70%, 45%, 0.25);
+}
+.boletim-badge.recuperacao {
+  background-color: hsla(354, 76%, 50%, 0.1);
+  color: hsl(354, 76%, 42%);
+  border: 1px solid hsla(354, 76%, 50%, 0.25);
+}
 
 /* Student Notices Timeline */
 .notices-timeline {
