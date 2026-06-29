@@ -295,4 +295,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- 11. Interactive Photo Gallery Lightbox ---
+  const galleryItemsList = document.querySelectorAll('.gallery-simple-item');
+  const lightbox = document.getElementById('gallery-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close-btn');
+
+  if (galleryItemsList.length > 0 && lightbox && lightboxImg) {
+    galleryItemsList.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const label = item.querySelector('.gallery-label');
+        
+        if (img) {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          
+          if (lightboxCaption) {
+            lightboxCaption.textContent = label ? label.textContent : (img.alt || "Galeria CENSA");
+          }
+          
+          lightbox.style.display = 'flex';
+          setTimeout(() => {
+            lightbox.classList.add('active');
+          }, 10);
+        }
+      });
+    });
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      setTimeout(() => {
+        lightbox.style.display = 'none';
+        lightboxImg.src = "";
+        if (lightboxCaption) lightboxCaption.textContent = "";
+      }, 300);
+    };
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    // Close when clicking overlay (outside the image container)
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+  }
+
 });
