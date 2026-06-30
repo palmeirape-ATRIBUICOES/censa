@@ -1525,6 +1525,10 @@ img {
 }
 
 @media (max-width: 768px) {
+  .glass-shape {
+    display: none;
+  }
+
   .top-bar {
     display: none;
   }
